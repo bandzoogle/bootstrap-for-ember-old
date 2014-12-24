@@ -1,5 +1,5 @@
 Bootstrap.ItemPaneView = Ember.View.extend(
-    templateName: 'views/item-pane'
+    template: Ember.Handlebars.compile('{{#if view.content.template}}{{partial view.content.template}}{{/if}}')
 
     corrItem: (->
         if @get('parentView').get('corrItemsView')?
@@ -20,10 +20,3 @@ Bootstrap.ItemPaneView = Ember.View.extend(
     ).property('content')
 )
 
-#TODO: Is there a simple way to do this without passing through a helper?
-Ember.Handlebars.helper("bsItemPanePartial", (templateName, options) ->
-    view = options.data.view
-    template = view.templateForName(templateName)
-    Ember.assert("Unable to find template with name '#{templateName}'", template)
-    template(@, { data: options.data })
-)

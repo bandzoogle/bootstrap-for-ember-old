@@ -1,60 +1,3 @@
-/* ========================================================================
- * Bootstrap: transition.js v3.0.0
- * http://twbs.github.com/bootstrap/javascript.html#transitions
- * ========================================================================
- * Copyright 2013 Twitter, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * ======================================================================== */
-
-
-+function ($) { "use strict";
-
-  // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
-  // ============================================================
-
-  function transitionEnd() {
-    var el = document.createElement('bootstrap')
-
-    var transEndEventNames = {
-      'WebkitTransition' : 'webkitTransitionEnd'
-    , 'MozTransition'    : 'transitionend'
-    , 'OTransition'      : 'oTransitionEnd otransitionend'
-    , 'transition'       : 'transitionend'
-    }
-
-    for (var name in transEndEventNames) {
-      if (el.style[name] !== undefined) {
-        return { end: transEndEventNames[name] }
-      }
-    }
-  }
-
-  // http://blog.alexmaccaw.com/css-transitions
-  $.fn.emulateTransitionEnd = function (duration) {
-    var called = false, $el = this
-    $(this).one($.support.transition.end, function () { called = true })
-    var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
-    setTimeout(callback, duration)
-    return this
-  }
-
-  $(function () {
-    $.support.transition = transitionEnd()
-  })
-
-}(window.jQuery);
-
 (function() {
   var Bootstrap;
 
@@ -417,7 +360,7 @@ Views that inherits from this view can be enhanced with:
 
 (function() {
   Bootstrap.ItemPaneView = Ember.View.extend({
-    template: Ember.Handlebars.compile(['{{#if view.content.template}}', '{{bsItemPanePartial view.content.template}}', '{{/if}}'].join("\n")),
+    template: Ember.Handlebars.compile('{{#if view.content.template}}{{partial view.content.template}}{{/if}}'),
     corrItem: (function() {
       var view, _i, _len, _ref;
       if (this.get('parentView').get('corrItemsView') != null) {
@@ -447,16 +390,6 @@ Views that inherits from this view can be enhanced with:
     }).property('content')
   });
 
-  Ember.Handlebars.helper("bsItemPanePartial", function(templateName, options) {
-    var template, view;
-    view = options.data.view;
-    template = view.templateForName(templateName);
-    Ember.assert("Unable to find template with name '" + templateName + "'", template);
-    return template(this, {
-      data: options.data
-    });
-  });
-
 }).call(this);
 
 (function() {
@@ -474,3 +407,16 @@ Views that inherits from this view can be enhanced with:
   });
 
 }).call(this);
+
+Ember.TEMPLATES["app/templates/views/item-pane"] = Ember.Handlebars.template({"1":function(depth0,helpers,partials,data) {
+  var helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = '';
+  data.buffer.push("  ");
+  data.buffer.push(escapeExpression(((helpers.partial || (depth0 && depth0.partial) || helperMissing).call(depth0, "view.content.template", {"name":"partial","hash":{},"hashTypes":{},"hashContexts":{},"types":["ID"],"contexts":[depth0],"data":data}))));
+  data.buffer.push("\n");
+  return buffer;
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, buffer = '';
+  stack1 = helpers['if'].call(depth0, "view.content.template", {"name":"if","hash":{},"hashTypes":{},"hashContexts":{},"fn":this.program(1, data),"inverse":this.noop,"types":["ID"],"contexts":[depth0],"data":data});
+  if (stack1 != null) { data.buffer.push(stack1); }
+  return buffer;
+},"useData":true});
