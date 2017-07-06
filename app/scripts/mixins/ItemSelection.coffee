@@ -39,7 +39,7 @@ Bootstrap.ItemSelection = Ember.Mixin.create(Bootstrap.ItemValue, Bootstrap.With
             return false
 
         selected is value
-    ).property('value', 'parentView.selected', 'content.linkTo').cacheable()
+    ).property('value', 'parentView.selected', 'content.linkTo')
 
     ###
     Handle selection by click event.

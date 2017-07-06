@@ -26,7 +26,7 @@ Bootstrap.BsButtonComponent = Ember.Component.extend(Bootstrap.TypeSupport, Boot
 
     blockClass: ( ->
         if @block then "#{@classTypePrefix}-block" else null
-    ).property('block').cacheable()
+    ).property('block')
 
     click: (evt) ->
         evt.stopPropagation() unless @get('bubbles')

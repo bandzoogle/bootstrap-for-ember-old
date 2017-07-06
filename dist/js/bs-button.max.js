@@ -45,7 +45,7 @@
       } else {
         return null;
       }
-    }).property('block').cacheable(),
+    }).property('block'),
     click: function(evt) {
       if (!this.get('bubbles')) {
         evt.stopPropagation();

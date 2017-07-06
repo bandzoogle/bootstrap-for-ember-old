@@ -12,11 +12,11 @@ Bootstrap.BsProgressbarComponent = Ember.Component.extend(Bootstrap.TypeSupport,
 
     style: ( ->
         "width:#{@progress}%;"
-    ).property('progress').cacheable()
+    ).property('progress')
 
     ariaValueNow: ( ->
         @progress
-    ).property('progress').cacheable()
+    ).property('progress')
 )
 
 Ember.Handlebars.helper 'bs-progressbar', Bootstrap.BsProgressbarComponent

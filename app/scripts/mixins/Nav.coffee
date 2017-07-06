@@ -9,5 +9,5 @@ Bootstrap.Nav = Ember.Mixin.create(
 
     navTypeClass: ( ->
         if @navType? then "nav-#{@navType}" else null
-    ).property('navType').cacheable()
+    ).property('navType')
 )

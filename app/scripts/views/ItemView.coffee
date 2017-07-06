@@ -34,7 +34,7 @@ Bootstrap.ItemView = Ember.View.extend(
         itemTitleKey = itemsView.get('itemTitleKey') || 'title'
         content = @get 'content'
         getProperty content, itemTitleKey, content
-    ).property('content').cacheable()
+    ).property('content')
 
     ###
     Determine whether the item is disabled or not
@@ -45,5 +45,5 @@ Bootstrap.ItemView = Ember.View.extend(
         disabled = !!getProperty content, 'disabled', no
         itemsView.set('selected', null) if disabled and @get 'isActive'
         disabled
-    ).property('content', 'content.disabled').cacheable()
+    ).property('content', 'content.disabled')
 )

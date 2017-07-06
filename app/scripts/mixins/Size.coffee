@@ -16,22 +16,22 @@ Bootstrap.SizeSupport = Ember.Mixin.create(
     extraSmallSizeClass: ( ->
         pref = @get 'classTypePrefix'
         if @xs then "#{pref}-xs" else null
-    ).property('xs').cacheable()
+    ).property('xs')
 
     smallSizeClass: ( ->
         pref = @get 'classTypePrefix'
         if @small then "#{pref}-sm" else null
-    ).property('small').cacheable()
+    ).property('small')
 
     largeSizeClass: ( ->
         pref = @get 'classTypePrefix'
         if @large then "#{pref}-lg" else null
-    ).property('large').cacheable()
+    ).property('large')
 
     sizeClass: ( ->
         size = @get 'size'
         pref = @get 'classTypePrefix'
 
         if size then "#{pref}-#{size}" else null
-    ).property('size').cacheable()
+    ).property('size')
 )

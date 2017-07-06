@@ -84,5 +84,5 @@ Notification(s) are added into the NotificationQueue by the pushNotification fun
 Bootstrap.Notification = Ember.Object.extend(
     classType: (->
         if @type? then "alert-#{@type}" else null
-    ).property('type').cacheable()
+    ).property('type')
 )

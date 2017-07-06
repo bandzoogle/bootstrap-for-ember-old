@@ -105,7 +105,7 @@ Currently a single notification is displayed as an Alert on top of the screen, e
       } else {
         return null;
       }
-    }).property('type').cacheable()
+    }).property('type')
   });
 
 }).call(this);
